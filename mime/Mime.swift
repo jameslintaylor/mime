@@ -58,7 +58,7 @@ private class GestureTarget {
 
 extension UIView {
     
-    private static var targetCacheKey = "_target_cache_"
+    private static var targetCacheKey: Character = "m"
     
     private var targetCache: [UIGestureRecognizer: GestureTarget] {
         get {
