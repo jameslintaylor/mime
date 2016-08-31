@@ -64,6 +64,4 @@ self.view.mime_on(tap) { [weak self]
 ```
 
 ### installation
-```
 `pod 'mime'` and you're set
-```
