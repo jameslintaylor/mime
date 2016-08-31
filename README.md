@@ -1,7 +1,5 @@
 ## `UIGestureRecognizer`, for swift!
 
-we've all worked with the lovely `UIGestureRecognizer`... with **mime** (*and swift*) we can make them even nicer 😉
-
 ### adding gestures...
 *without mime*
 ```swift
