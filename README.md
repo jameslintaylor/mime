@@ -64,8 +64,6 @@ self.view.mime_on(tap) { [weak self]
 ```
 
 ### installation
-
-Cocoapods
 ```
-pod "mime"
+`pod 'mime'` and you're set
 ```
