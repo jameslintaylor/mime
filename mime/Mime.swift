@@ -58,13 +58,14 @@ private class GestureTarget {
 
 extension UIView {
     
+    private typealias TargetCache = [UIGestureRecognizer: [GestureTarget]]
     private static var targetCacheKey: Character = "m"
     
-    private var targetCache: [UIGestureRecognizer: GestureTarget] {
+    private var targetCache: TargetCache {
         get {
             /// return the existing if it exists otherwise create a new one
-            return getAssociatedObject(key: &UIView.targetCacheKey) as? [UIGestureRecognizer: GestureTarget] ?? {
-                let new = [UIGestureRecognizer: GestureTarget]()
+            return getAssociatedObject(key: &UIView.targetCacheKey) as? TargetCache ?? {
+                let new = TargetCache()
                 self.targetCache = new
                 return new
                 }()
@@ -84,7 +85,7 @@ public extension UIView {
                 doBlock($0 as! Gesture)
             }
         }
-        targetCache[gesture] = target
+        targetCache[gesture]?.append(target)
         // add the gesture with the target
         gesture.addTarget(target, action: GestureTarget.handler)
         addGestureRecognizer(gesture)
