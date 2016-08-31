@@ -1,0 +1,20 @@
+.DS_Store
+
+# Carthage
+Carthage/Build/
+Carthage/Checkouts/
+
+# Cocoapods
+Pods/
+Podfile
+Podfile.lock
+mime.xcworkspace
+
+# Build generated
+build/
+derivedData/
+
+# Other
+*.moved-aside
+*.xcuserstate
+*.xcuserdatad
