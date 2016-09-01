@@ -38,9 +38,8 @@ view.addSubview(button)
 ```
 
 ### removing a mime closure...
+`mime_off` removes all closures set up with `mime_on`
 ```swift
-// `mime_off` removes all targets set up with `mime_on`
-// anything that has mime_on also has mime_off
 tap.mime_off()
 button.mime_off()
 ```
