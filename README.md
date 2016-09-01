@@ -1,4 +1,4 @@
-# from target-action to closure! (and beyond)
+# from target-action to closure! (and beyond 🚀)
 **mime** provides an alternate way of interacting with the objective-c style target-action pattern using swift closures
 
 ### gestures...
