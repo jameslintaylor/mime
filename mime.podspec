@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
   s.name = "mime"
-  s.version = "0.0.1"
+  s.version = "0.0.3"
   s.summary = "gesture recognizers for swift"
   s.description = <<-EOS
   mime is a simpler api for adding and reacting to `UIGestureRecognizer` in swift

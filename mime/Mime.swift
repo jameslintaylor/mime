@@ -85,7 +85,7 @@ public extension UIView {
                 doBlock($0 as! Gesture)
             }
         }
-        targetCache[gesture]?.append(target)
+        targetCache[gesture] = (targetCache[gesture] ?? []) + [target]
         // add the gesture with the target
         gesture.addTarget(target, action: GestureTarget.handler)
         addGestureRecognizer(gesture)

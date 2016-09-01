@@ -9,6 +9,7 @@ Pods/
 Podfile
 Podfile.lock
 mime.xcworkspace
+mime-tests.xcodeproj
 
 # Build generated
 build/
