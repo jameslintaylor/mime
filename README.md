@@ -37,7 +37,7 @@ button.mime_on(.AllTouchEvents) {
 view.addSubview(button)
 ```
 
-### removing mime target/action 
+### removing a mime closure...
 ```swift
 // `mime_off` removes all targets set up with `mime_on`
 // anything that has mime_on also has mime_off
@@ -45,7 +45,7 @@ tap.mime_off()
 button.mime_off()
 ```
 
-### a note on retain cycles
+### a note on retain cycles...
 ```swift
 // when calling `T.mime_on`, note that `T` will hold a reference to the closure
 tap.mime_on {
