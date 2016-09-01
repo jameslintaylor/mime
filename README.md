@@ -1,7 +1,8 @@
-## `UIGestureRecognizer`, for swift!
+# from target-action to closure! (and beyond)
+**mime** provides an alternate way of interacting with the objective-c style target-action pattern using swift closures
 
-### adding gestures...
-*without mime*
+### gestures...
+target-action
 ```swift
 let tap = UITapGestureRecognizer(target: self, action: #selector(...handleTap(_:))
 view.addGestureRecognizer(tap)
@@ -10,57 +11,52 @@ dynamic func handleTap(tap: UITapGestureRecognizer) {
     print("tap at \(tap.locationInView(view))!")
 }
 ```
-*with mime*
+**mime**
 ```swift
 let tap = UITapGestureRecognizer()
-view.mime_on(tap) { [weak view]
-    print("tap at \($0.locationInView(view))!")
+tap.mime_on { 
+    print("tap at \($0.locationInView($0.view))!")
 }
+view.addGestureRecognizer(tap)
 ```
-💥**bonus!**💥 mime can also do state filtering
+💥**bonus!**💥 **mime** can also do gesture state filtering
 ```swift
 let pan = UIPanGestureRecognizer()
-view.mime_on(pan, [.began, .changed]) { _ in
+pan.mime_on([.began, .changed]) { _ in
     print("meh... I'm not really interested in being called when the pan ends")
 }
+view.addGestureRecognizer(pan)
 ```
 
-### removing gestures
-removing gestures is easy too!
+### controls...
 ```swift
-// to remove all gestures that mime has registered to the view, we can do
-view.mime_off()
+let button = UIButton()
+button.mime_on(.AllTouchEvents) { 
+    print("getting all touchy with \($0.currentTitle)...")
+}
+view.addSubview(button)
+```
 
-// to remove a specific gesture, pass the reference to that gesture
-let swipe = UISwipeGestureRecognizer()
-swipe.direction = .Left
-view.mime_on(swipe) { _ in }
-view.mime_off(swipe)
-
-// you can actually pass as many gestures to `mime_off` as you'd like
-let tap = ...
-let pan = ...
-let pinch = ...
-...
-view.mime_off(tap, pan, pinch)
+### removing mime target/action 
+```swift
+// `mime_off` removes all targets set up with `mime_on`
+// anything that has mime_on also has mime_off
+tap.mime_off()
+button.mime_off()
 ```
 
 ### a note on retain cycles
 ```swift
-// when calling `view.mime_on`, note that `view` will hold a reference to the closure
-view.mime_on(tap) {
+// when calling `T.mime_on`, note that `T` will hold a reference to the closure
+tap.mime_on {
     print("I'm being retained!")
 }
 
-// if you plan on referencing `view` from within the closure, make sure to do so weakly
-view.mime_on(tap) { [weak view]
+// if you plan on referencing an object that holds reference to `T` from inside the closure, make sure to do so weakly
+tap.mime_on { [weak view]
     print("I'm being retained but it's cool cause I don't really care about \(view)")
 }
-
-// the same goes for view controllers (here `self` is a `UIViewController`)
-self.view.mime_on(tap) { [weak self]
-    ...
-}
+view.addGestureRecognizer(tap)
 ```
 
 ### installation
