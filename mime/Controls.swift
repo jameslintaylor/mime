@@ -8,6 +8,30 @@
 
 import UIKit
 
+/// let's have this until swift 3 (and the grand renamification)
+public extension UIControlEvents {
+    static let touchDown = UIControlEvents.TouchDown
+    static let touchDownRepeat = UIControlEvents.TouchDownRepeat
+    static let touchDragInside = UIControlEvents.TouchDragInside
+    static let touchDragOutside = UIControlEvents.TouchDragOutside
+    static let touchDragEnter = UIControlEvents.TouchDragEnter
+    static let touchDragExit = UIControlEvents.TouchDragExit
+    static let touchUpInside = UIControlEvents.TouchUpInside
+    static let touchUpOutside = UIControlEvents.TouchUpOutside
+    static let touchCancel = UIControlEvents.TouchCancel
+    static let valueChanged = UIControlEvents.ValueChanged
+    static let primaryActionTriggered = UIControlEvents.PrimaryActionTriggered
+    static let editingDidBegin = UIControlEvents.EditingDidBegin
+    static let editingChanged = UIControlEvents.EditingChanged
+    static let editingDidEnd = UIControlEvents.EditingDidEnd
+    static let editingDidEndOnExit = UIControlEvents.EditingDidEndOnExit
+    static let allTouchEvents = UIControlEvents.AllTouchEvents
+    static let allEditingEvents = UIControlEvents.AllEditingEvents
+    static let applicationReserved = UIControlEvents.ApplicationReserved
+    static let systemReserved = UIControlEvents.SystemReserved
+    static let allEvents = UIControlEvents.AllEvents
+}
+
 extension UIControl: Mime {}
 
 public extension Mime where Self: UIControl {
