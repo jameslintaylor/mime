@@ -31,7 +31,7 @@ view.addGestureRecognizer(pan)
 ### controls...
 ```swift
 let button = UIButton()
-button.mime_on(.AllTouchEvents) { 
+button.mime_on(.allTouchEvents) { 
     print("getting all touchy with \($0.currentTitle)...")
 }
 view.addSubview(button)
