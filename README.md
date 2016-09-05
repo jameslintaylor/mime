@@ -52,7 +52,7 @@ tap.mime_on {
 }
 
 // if you plan on referencing an object that holds reference to `T` from inside the closure, make sure to do so weakly
-tap.mime_on { [weak view]
+tap.mime_on { [weak view] in
     print("I'm being retained but it's cool cause I don't really care about \(view)")
 }
 view.addGestureRecognizer(tap)
