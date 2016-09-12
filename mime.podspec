@@ -1,13 +1,11 @@
 Pod::Spec.new do |s|
 
   s.name = "mime"
-  s.version = "0.0.3"
-  s.summary = "gesture recognizers for swift"
+  s.version = "0.0.4"
+  s.summary = "from target-action to closure! (and beyond 🚀)"
   s.description = <<-EOS
-  mime is a simpler api for adding and reacting to `UIGestureRecognizer` in swift
-
-  - add a gesture recognizer and react to it with `UIView.mime_on(_:UIGestureRecognizer...)`
-  - remove a gesture recognizer with `UIView.mime_off(_:UIGestureRecognizer...)`
+  mime provides an alternate way of interacting with the objective-c style target-action
+  pattern using swift closures
   EOS
 
   s.homepage = "https://github.com/jameslintaylor/mime"

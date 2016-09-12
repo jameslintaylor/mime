@@ -31,21 +31,20 @@ view.addGestureRecognizer(pan)
 ### controls...
 ```swift
 let button = UIButton()
-button.mime_on(.AllTouchEvents) { 
+button.mime_on(.allTouchEvents) { 
     print("getting all touchy with \($0.currentTitle)...")
 }
 view.addSubview(button)
 ```
 
-### removing mime target/action 
+### removing a mime closure...
+`mime_off` removes all closures set up with `mime_on`
 ```swift
-// `mime_off` removes all targets set up with `mime_on`
-// anything that has mime_on also has mime_off
 tap.mime_off()
 button.mime_off()
 ```
 
-### a note on retain cycles
+### a note on retain cycles...
 ```swift
 // when calling `T.mime_on`, note that `T` will hold a reference to the closure
 tap.mime_on {
@@ -53,7 +52,7 @@ tap.mime_on {
 }
 
 // if you plan on referencing an object that holds reference to `T` from inside the closure, make sure to do so weakly
-tap.mime_on { [weak view]
+tap.mime_on { [weak view] in
     print("I'm being retained but it's cool cause I don't really care about \(view)")
 }
 view.addGestureRecognizer(tap)
