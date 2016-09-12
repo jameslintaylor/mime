@@ -22,6 +22,6 @@ Pod::Spec.new do |s|
   s.source = { :git => "https://github.com/jameslintaylor/mime.git", :tag => s.version }
   s.source_files = "mime/*.swift"
   s.framework = "UIKit"
-  s.dependency "AssociatedObjects"
+  s.dependency "AssociatedObjects", :git => 'https://github.com/jameslintaylor/AssociatedObjects.git'
 
 end

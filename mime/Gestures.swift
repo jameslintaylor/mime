@@ -8,7 +8,7 @@
 
 import UIKit
 
-prefix operator *< {}
+prefix operator *<
 /// maps a `UIGestureRecognizerState` to GestureState by left bit-shifting 1
 /// by `UIGestureRecognizerState.rawValue`...
 ///
@@ -19,26 +19,26 @@ private prefix func *< (rhs: UIGestureRecognizerState) -> GestureStates {
 }
 
 /// 1:1 mapping of `UIGestureRecognizerState` in `OptionSetType` form
-public struct GestureStates: OptionSetType {
+public struct GestureStates: OptionSet {
     
     public let rawValue: Int
     public init(rawValue: Int) {
         self.rawValue = rawValue
     }
     
-    public static let possible = *<.Possible
-    public static let began = *<.Began
-    public static let changed = *<.Changed
-    public static let ended = *<.Ended
-    public static let cancelled = *<.Cancelled
-    public static let failed = *<.Failed
+    public static let possible = *<.possible
+    public static let began = *<.began
+    public static let changed = *<.changed
+    public static let ended = *<.ended
+    public static let cancelled = *<.cancelled
+    public static let failed = *<.failed
     
     public static let all: GestureStates = [.possible, .began, .changed, .ended, .cancelled, .failed]
 }
 
 private extension GestureStates {
     
-    func contains(uiMember: UIGestureRecognizerState) -> Bool {
+    func contains(_ uiMember: UIGestureRecognizerState) -> Bool {
         // tests by reversing the bit shifting operation used to create the state
         return ((self.rawValue >> uiMember.rawValue) & 1) == 1
     }
@@ -48,10 +48,9 @@ extension UIGestureRecognizer: Mime {}
 
 public extension Mime where Self: UIGestureRecognizer {
     
-    /// wraps the objc style `addTarget:selector:` method using swift closures
-    ///
-    /// optionally supply a `states` parameter to filter invokation of the `closure` provided
-    func mime_on(states: GestureStates = .all, closure: (Self) -> ()) -> Self {
+    /// implements the objc style `addTarget:selector:` method using swift closures
+    @discardableResult
+    func mime_on(_ states: GestureStates = .all, closure: @escaping (Self) -> ()) -> Self {
         // setup the target, casting sender to Self
         let target = Target {
             if states.contains($0.state) {

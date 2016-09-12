@@ -14,7 +14,7 @@ import Foundation
 internal class Target {
     
     let delegate: (AnyObject) -> ()
-    init(delegate: (AnyObject) -> ()) {
+    init(delegate: @escaping (AnyObject) -> ()) {
         self.delegate = delegate
     }
     
@@ -22,7 +22,7 @@ internal class Target {
     static let handler = #selector(handle(_:))
     
     /// just calls `self.delegate`
-    dynamic func handle(sender: AnyObject) {
+    dynamic func handle(_ sender: AnyObject) {
         delegate(sender)
     }
 }

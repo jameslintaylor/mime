@@ -12,9 +12,6 @@ import AssociatedObjects
 /// you're not meant to implement this protocol, it's just here to make use of swift generics
 public protocol Mime: AssociatedObjects {}
 
-// the key we'll use for our target cache
-private var targetCacheKey = "_"
-
 // implement target cache associated object
 internal extension Mime {
     
@@ -23,14 +20,14 @@ internal extension Mime {
     var targetCache: TargetCache {
         get {
             /// return the existing cache if it exists otherwise create a new one
-            return getAssociatedObject(key: &targetCacheKey) as? TargetCache ?? {
+            return ao_get(key: "targetCache") as? TargetCache ?? {
                 let new = TargetCache()
                 self.targetCache = new
                 return new
                 }()
         }
         set {
-            setAssociatedObject(newValue, key: &targetCacheKey)
+            ao_set(newValue, key: "targetCache")
         }
     }
 }
